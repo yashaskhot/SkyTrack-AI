@@ -1,0 +1,7 @@
+{
+  "name": "SkyTrack AI",
+  "description": "Real-time flight tracking visualization with AI-powered flight insights and destination analysis.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
