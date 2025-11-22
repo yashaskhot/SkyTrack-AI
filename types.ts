@@ -1,61 +1,62 @@
+
 export interface AviationStackFlight {
-  flight_date: string;
-  flight_status: string;
+  flight_date: string | null;
+  flight_status: string | null;
   departure: {
-    airport: string;
-    timezone: string;
-    iata: string;
-    icao: string;
-    terminal: string;
-    gate: string;
-    delay: number;
-    scheduled: string;
-    estimated: string;
-    actual: string;
-    estimated_runway: string;
-    actual_runway: string;
+    airport: string | null;
+    timezone: string | null;
+    iata: string | null;
+    icao: string | null;
+    terminal: string | null;
+    gate: string | null;
+    delay: number | null;
+    scheduled: string | null;
+    estimated: string | null;
+    actual: string | null;
+    estimated_runway: string | null;
+    actual_runway: string | null;
   } | null;
   arrival: {
-    airport: string;
-    timezone: string;
-    iata: string;
-    icao: string;
-    terminal: string;
-    gate: string;
-    baggage: string;
-    delay: number;
-    scheduled: string;
-    estimated: string;
-    actual: string;
-    estimated_runway: string;
-    actual_runway: string;
+    airport: string | null;
+    timezone: string | null;
+    iata: string | null;
+    icao: string | null;
+    terminal: string | null;
+    gate: string | null;
+    baggage: string | null;
+    delay: number | null;
+    scheduled: string | null;
+    estimated: string | null;
+    actual: string | null;
+    estimated_runway: string | null;
+    actual_runway: string | null;
   } | null;
   airline: {
-    name: string;
-    iata: string;
-    icao: string;
+    name: string | null;
+    iata: string | null;
+    icao: string | null;
   } | null;
   flight: {
-    number: string;
-    iata: string;
-    icao: string;
+    number: string | null;
+    iata: string | null;
+    icao: string | null;
     codeshared: any;
   } | null;
   aircraft: {
-    registration: string;
-    iata: string;
-    icao: string;
-    icao24: string;
+    registration: string | null;
+    iata: string | null;
+    icao: string | null;
+    icao24: string | null;
   } | null;
   live: {
-    updated: string;
-    latitude: number;
-    longitude: number;
-    altitude: number;
-    direction: number;
-    speed_horizontal: number;
-    speed_vertical: number;
-    is_ground: boolean;
+    updated: string | null;
+    latitude: number | null;
+    longitude: number | null;
+    altitude: number | null;
+    direction: number | null;
+    speed_horizontal: number | null;
+    speed_vertical: number | null;
+    is_ground: boolean | null;
   } | null;
 }
 

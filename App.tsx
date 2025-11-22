@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useCallback } from 'react';
 import { AviationStackFlight, FlightData } from './types';
 import Map from './components/Map';
@@ -142,23 +143,36 @@ const App: React.FC = () => {
          {/* Map Overlay / Stats Header */}
          <div className="absolute top-4 left-4 z-10 flex gap-4">
             <div className="bg-slate-900/90 backdrop-blur border border-slate-700 rounded-lg p-3 shadow-lg flex items-center gap-3">
-               <div className="p-2 bg-sky-500/10 rounded-full">
-                  <LayoutDashboard className="h-5 w-5 text-sky-400" />
+               <div className="bg-emerald-500/10 p-2 rounded-full">
+                  <LayoutDashboard className="h-5 w-5 text-emerald-400" />
                </div>
-               <div>
-                 <div className="text-xs text-slate-400 uppercase font-bold">Global Traffic</div>
-                 <div className="text-lg font-mono font-bold text-white">{flights.length.toLocaleString()}</div>
+               <div className="flex flex-col">
+                  <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">System Status</span>
+                  <div className="flex items-center gap-2">
+                    <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></div>
+                    <span className="text-xs font-mono text-slate-300">
+                      {loading ? 'SYNCING...' : 'ONLINE'}
+                    </span>
+                  </div>
                </div>
             </div>
+
+            <div className="bg-slate-900/90 backdrop-blur border border-slate-700 rounded-lg p-3 shadow-lg flex items-center gap-3">
+                <div className="flex flex-col">
+                    <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Last Update</span>
+                    <span className="text-xs font-mono text-sky-400">
+                      {lastUpdated ? lastUpdated.toLocaleTimeString() : '--:--:--'}
+                    </span>
+                </div>
+            </div>
          </div>
-         
+
          <Map 
            flights={flights} 
-           onSelectFlight={setSelectedFlight}
+           onSelectFlight={setSelectedFlight} 
            selectedFlight={selectedFlight}
          />
 
-         {/* Detail View */}
          {selectedFlight && (
            <FlightDetail 
              flight={selectedFlight} 

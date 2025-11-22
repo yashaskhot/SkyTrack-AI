@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import { AviationStackFlight } from '../types';
 import { Plane, MapPin, Clock, Wind, ArrowRight, Bot, Send, X } from 'lucide-react';
@@ -24,6 +25,7 @@ const FlightDetail: React.FC<Props> = ({ flight, onClose }) => {
     setIsChatting(false);
     
     const fetchInsight = async () => {
+      if (!flight) return;
       setLoadingInsight(true);
       const text = await getFlightInsights(flight);
       setInsight(text);
@@ -46,10 +48,13 @@ const FlightDetail: React.FC<Props> = ({ flight, onClose }) => {
     setInput('');
     setIsChatting(true);
 
-    const response = await chatAboutFlight([...messages, userMsg], input, flight);
+    // Pass existing messages as history. The new message is sent via sendMessage.
+    const response = await chatAboutFlight(messages, input, flight);
     setMessages(prev => [...prev, { role: 'model', content: response }]);
     setIsChatting(false);
   };
+
+  if (!flight) return null;
 
   return (
     <div className="absolute right-0 top-0 h-full w-full max-w-md bg-slate-900/95 backdrop-blur-md border-l border-slate-700 shadow-2xl flex flex-col transform transition-transform duration-300 ease-in-out z-20">
@@ -60,7 +65,7 @@ const FlightDetail: React.FC<Props> = ({ flight, onClose }) => {
                 <Plane className="text-emerald-400" />
                 {flight.airline?.name || 'Unknown Airline'}
             </h2>
-            <span className="text-xs font-mono text-slate-400">{flight.flight?.iata || flight.flight?.number || 'N/A'} • {flight.flight_status}</span>
+            <span className="text-xs font-mono text-slate-400">{flight.flight?.iata || flight.flight?.number || 'N/A'} • {flight.flight_status || 'Unknown'}</span>
         </div>
         <button onClick={onClose} className="text-slate-400 hover:text-white p-2 rounded-full hover:bg-slate-700">
             <X className="h-5 w-5" />
@@ -114,7 +119,7 @@ const FlightDetail: React.FC<Props> = ({ flight, onClose }) => {
                 <span>AI Flight Analyst</span>
             </div>
             
-            <div className="bg-slate-800/50 border border-purple-900/30 rounded-lg p-4 text-sm text-slate-300 leading-relaxed">
+            <div className="bg-slate-800/50 border border-purple-900/30 rounded-lg p-4 text-sm text-slate-300 leading-relaxed overflow-hidden">
                 {loadingInsight ? (
                     <div className="flex items-center gap-2 animate-pulse">
                         <div className="h-2 w-2 bg-purple-500 rounded-full"></div>
@@ -122,7 +127,7 @@ const FlightDetail: React.FC<Props> = ({ flight, onClose }) => {
                     </div>
                 ) : (
                     <div className="markdown-prose">
-                       {insight?.split('\n').map((line, i) => <p key={i} className="mb-2">{line}</p>)}
+                       <ReactMarkdown>{insight || "No insights available."}</ReactMarkdown>
                     </div>
                 )}
             </div>
