@@ -4,12 +4,12 @@ SkyTrack AI is a modern flight tracking application that combines real-time avia
 
 ## Features
 
-- ** Interactive Global Map:** Visualizes active flights on a D3.js-powered orthogonal (globe) or mercator projection map.
-- ** Real-Time Data:** Fetches live flight status, altitude, speed, and route information using the Aviationstack API.
-- ** AI Flight Analyst:** Uses **Google Gemini 2.5 Flash** to generate interesting summaries and facts about the selected flight, aircraft, and current location.
-- ** Contextual AI Chat:** Chat with "SkyTrack AI" to ask specific questions about the flight (e.g., "What is the weather at the destination?", "How old is this aircraft?").
-- ** Search & Filter:** Easily find flights by airline, flight number, or airport code.
-- ** Modern UI:** A responsive, dark-themed interface built with Tailwind CSS and Lucide icons.
+- **Interactive Global Map:** Visualizes active flights on a D3.js-powered orthogonal (globe) or mercator projection map.
+- **Real-Time Data:** Fetches live flight status, altitude, speed, and route information using the Aviationstack API.
+- **AI Flight Analyst:** Uses **Google Gemini 2.5 Flash** to generate interesting summaries and facts about the selected flight, aircraft, and current location.
+- **Contextual AI Chat:** Chat with "SkyTrack AI" to ask specific questions about the flight (e.g., "What is the weather at the destination?", "How old is this aircraft?").
+- **Search & Filter:** Easily find flights by airline, flight number, or airport code.
+- **Modern UI:** A responsive, dark-themed interface built with Tailwind CSS and Lucide icons.
 
 ## Tech Stack
 
